@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity{
     }
 
     private void  login(String member_id, String member_pw){
-        ApiInterface apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
+        ApiInterface apiInterface = ApiClient.getApiClient(this).create(ApiInterface.class);
         Call<GetterSetter> call = apiInterface.login("login", member_id, member_pw);
         call.enqueue(new Callback<GetterSetter>() {
             @Override
@@ -35,7 +35,27 @@ public class MainActivity extends AppCompatActivity{
                     }
                 }
             }
+            @Override
+            public void onFailure(Call<GetterSetter> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "서버와 연결에 실패하였습니다.", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
+    private void  board(){
+        ApiInterface apiInterface = ApiClient.getApiClient(this).create(ApiInterface.class);
+        Call<GetterSetter> call = apiInterface.board("board", "board");
+        call.enqueue(new Callback<GetterSetter>() {
+            @Override
+            public void onResponse(Call<GetterSetter> call, Response<GetterSetter> response) {
+                if(response.isSuccessful()&&response.body()!=null){
+                    if(Integer.parseInt(response.body().getStatus())!=1){
+                        errorCode(Integer.parseInt(response.body().getStatus()));
+                    }else{
+                        Toast.makeText(getApplicationContext(), "글 불러오기 성공! status: "+response.body().getStatus(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
             @Override
             public void onFailure(Call<GetterSetter> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), "서버와 연결에 실패하였습니다.", Toast.LENGTH_SHORT).show();
@@ -47,6 +67,9 @@ public class MainActivity extends AppCompatActivity{
         EditText edit_member_id = (EditText)findViewById(R.id.member_id);
         EditText edit_member_pw = (EditText)findViewById(R.id.member_pw);
         login(edit_member_id.getText().toString(), edit_member_pw.getText().toString());
+    }
+    public void onClickBoard(View view) {
+        board();
     }
 
     public void errorCode(int error_code){

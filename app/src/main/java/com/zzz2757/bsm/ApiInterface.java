@@ -10,8 +10,14 @@ public interface ApiInterface
     @FormUrlEncoded
     @POST("database")
     Call<GetterSetter> login(
-            @Field("command_type") String command,
+            @Field("command_type") String command_type,
             @Field("member_id") String member_id,
             @Field("member_pw") String member_pw
+    );
+    @FormUrlEncoded
+    @POST("database")
+    Call<GetterSetter> board(
+            @Field("command_type") String command_type,
+            @Field("boardType") String boardType
     );
 }
