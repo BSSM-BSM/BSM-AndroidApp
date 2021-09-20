@@ -1,4 +1,7 @@
-package com.zzz2757.bsm;
+package com.zzz2757.bsm.Api;
+
+import com.zzz2757.bsm.GetterSetter.BoardData;
+import com.zzz2757.bsm.GetterSetter.GetterSetter;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -16,7 +19,7 @@ public interface ApiInterface
     );
     @FormUrlEncoded
     @POST("database")
-    Call<GetterSetter> board(
+    Call<String> board(
             @Field("command_type") String command_type,
             @Field("boardType") String boardType
     );

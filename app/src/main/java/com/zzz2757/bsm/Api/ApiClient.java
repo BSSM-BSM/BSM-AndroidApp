@@ -1,4 +1,4 @@
-package com.zzz2757.bsm;
+package com.zzz2757.bsm.Api;
 
 import android.content.Context;
 
@@ -13,6 +13,7 @@ import okhttp3.JavaNetCookieJar;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class ApiClient {
     private static final String BASE_URL = "https://bssm.kro.kr/";
@@ -33,6 +34,7 @@ public class ApiClient {
             retrofit = new Retrofit.Builder()
                     .client(client)
                     .baseUrl(BASE_URL)
+                    .addConverterFactory(ScalarsConverterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create(gson))
                     .build();
         }
