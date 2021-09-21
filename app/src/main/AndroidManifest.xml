@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BSM">
         <activity
+            android:name=".Board.BoardViewActivity"
+            android:exported="true" />
+        <activity
             android:name=".Board.BoardActivity"
             android:exported="true" />
         <activity

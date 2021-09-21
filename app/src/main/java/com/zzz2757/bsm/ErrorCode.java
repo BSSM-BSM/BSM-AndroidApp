@@ -1,7 +1,10 @@
 package com.zzz2757.bsm;
 
+import android.content.Context;
+import android.widget.Toast;
+
 public class ErrorCode{
-    public static String errorCode(int error_code){
+    public static void errorCode(Context context, int error_code){
         String[] error_msg = {
                 "", "",
                 "정상적인 접근이 아닙니다.",
@@ -25,6 +28,6 @@ public class ErrorCode{
                 "게시글 작성자가 아닙니다.",
                 "로그인후 이용 가능 합니다.",
         };
-        return error_msg[error_code];
+        Toast.makeText(context, "에러코드 "+error_code+"\n"+ error_msg[error_code], Toast.LENGTH_SHORT).show();
     }
 }

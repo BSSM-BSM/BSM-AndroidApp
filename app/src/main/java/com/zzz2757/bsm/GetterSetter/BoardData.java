@@ -1,12 +1,12 @@
 package com.zzz2757.bsm.GetterSetter;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 
-public class BoardData {
-    private int status, postNo;
-    private String boardType, postTitle, postComments, memberCode, memberNickname, postDate, postHit, postLike, arr_board;
+public class BoardData implements Serializable {
+    private int status, postNo, postComments, memberCode, postHit, postLike;
+    private String boardType, postTitle,memberNickname, postDate;
 
-    public BoardData(String boardType, int post_no, String postTitle, String postComments, String memberCode, String memberNickname, String postDate, String postHit, String postLike){
+    public BoardData(String boardType, int post_no, String postTitle, int postComments, int memberCode, String memberNickname, String postDate, int postHit, int postLike){
         this.boardType = boardType;
         this.postNo = post_no;
         this.postTitle = postTitle;
@@ -30,10 +30,10 @@ public class BoardData {
     public String getPostTitle() {
         return postTitle;
     }
-    public String getPostComments() {
+    public int getPostComments() {
         return postComments;
     }
-    public String getMemberCode() {
+    public int getMemberCode() {
         return memberCode;
     }
     public String getMemberNickname() {
@@ -42,10 +42,10 @@ public class BoardData {
     public String getPostDate() {
         return postDate;
     }
-    public String getPostHit() {
+    public int getPostHit() {
         return postHit;
     }
-    public String getPostLike() {
+    public int getPostLike() {
         return postLike;
     }
     public void setStatus(int status) {
@@ -60,10 +60,10 @@ public class BoardData {
     public void setPostTitle(String postTitle) {
         this.postTitle = postTitle;
     }
-    public void setPostComments(String postComments) {
+    public void setPostComments(int postComments) {
         this.postComments = postComments;
     }
-    public void setMemberCode(String memberCode) {
+    public void setMemberCode(int memberCode) {
         this.memberCode = memberCode;
     }
     public void setMemberNickname(String memberNickname) {
@@ -72,10 +72,10 @@ public class BoardData {
     public void setPostDate(String postDate) {
         this.postDate = postDate;
     }
-    public void setPostHit(String postHit) {
+    public void setPostHit(int postHit) {
         this.postHit = postHit;
     }
-    public void setPostLike(String postLike) {
+    public void setPostLike(int postLike) {
         this.postLike = postLike;
     }
 }

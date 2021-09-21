@@ -18,14 +18,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class BoardActivity extends AppCompatActivity {
-    BoardData getSet = new BoardData("", 0, "", "", "", "", "", "", "");
+    BoardData getSet = new BoardData("", 0, "", 0, 0, "", "", 0, 0);
     private ArrayList<BoardData> boardList;
     BoardAdapter boardAdapter;
 
@@ -38,7 +37,7 @@ public class BoardActivity extends AppCompatActivity {
         RecyclerView recyclerView = (RecyclerView)findViewById(R.id.board_recycler);
         LinearLayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(manager); // LayoutManager 등록
-        boardAdapter = new BoardAdapter(boardList);
+        boardAdapter = new BoardAdapter(boardList, this);
         recyclerView.setAdapter(boardAdapter);  // Adapter 등록
 
         board();
@@ -58,7 +57,7 @@ public class BoardActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     if(getSet.getStatus()!=1){
-                        error(getSet.getStatus());
+                        ErrorCode.errorCode(getApplicationContext(), getSet.getStatus());
                     }else{
                         //Toast.makeText(getApplicationContext(), "글 불러오기 성공! status: "+getSet.getStatus(), Toast.LENGTH_SHORT).show();
                         try {
@@ -69,12 +68,12 @@ public class BoardActivity extends AppCompatActivity {
                                 getSet.setBoardType(boardObject.getString("boardType"));
                                 getSet.setPostNo(Integer.parseInt(boardObject.getString("postNo")));
                                 getSet.setPostTitle(boardObject.getString("postTitle"));
-                                getSet.setPostComments(boardObject.getString("postComments"));
-                                getSet.setMemberCode(boardObject.getString("memberCode"));
+                                getSet.setPostComments(Integer.parseInt(boardObject.getString("postComments")));
+                                getSet.setMemberCode(Integer.parseInt(boardObject.getString("memberCode")));
                                 getSet.setMemberNickname(boardObject.getString("memberNickname"));
                                 getSet.setPostDate(boardObject.getString("postDate"));
-                                getSet.setPostHit(boardObject.getString("postHit"));
-                                getSet.setPostLike(boardObject.getString("postLike"));
+                                getSet.setPostHit(Integer.parseInt(boardObject.getString("postHit")));
+                                getSet.setPostLike(Integer.parseInt(boardObject.getString("postLike")));
                                 boardList.add(new BoardData(getSet.getBoardType(), getSet.getPostNo(), getSet.getPostTitle(), getSet.getPostComments(), getSet.getMemberCode(), getSet.getMemberNickname(), getSet.getPostDate(), getSet.getPostHit(), getSet.getPostLike()));
                             }
                         } catch (JSONException e) {
@@ -89,9 +88,5 @@ public class BoardActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "서버와 연결에 실패하였습니다.\n" + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    public void error(int error_code){
-        Toast.makeText(getApplicationContext(), "에러코드 "+error_code+"\n"+ ErrorCode.errorCode(error_code), Toast.LENGTH_SHORT).show();
     }
 }

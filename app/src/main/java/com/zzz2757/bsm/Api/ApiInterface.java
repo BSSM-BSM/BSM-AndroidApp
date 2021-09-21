@@ -1,7 +1,7 @@
 package com.zzz2757.bsm.Api;
 
-import com.zzz2757.bsm.GetterSetter.BoardData;
 import com.zzz2757.bsm.GetterSetter.GetterSetter;
+import com.zzz2757.bsm.GetterSetter.PostData;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -10,6 +10,13 @@ import retrofit2.http.POST;
 
 public interface ApiInterface
 {
+    @FormUrlEncoded
+    @POST("database")
+    Call<String> version(
+            @Field("command_type") String command_type,
+            @Field("os") String os,
+            @Field("app") String app
+    );
     @FormUrlEncoded
     @POST("database")
     Call<GetterSetter> login(
@@ -22,5 +29,12 @@ public interface ApiInterface
     Call<String> board(
             @Field("command_type") String command_type,
             @Field("boardType") String boardType
+    );
+    @FormUrlEncoded
+    @POST("database")
+    Call<PostData> post(
+            @Field("command_type") String command_type,
+            @Field("boardType") String boardType,
+            @Field("post_no") int post_no
     );
 }
