@@ -5,8 +5,14 @@
       <map>
         <entry key="..\:/Users/dltjd/Desktop/programming/project/BSM/BSM-AndroidApp/app/src/main/res/layout/activity_board.xml" value="0.38645833333333335" />
         <entry key="..\:/Users/dltjd/Desktop/programming/project/BSM/BSM-AndroidApp/app/src/main/res/layout/activity_board_view.xml" value="0.38645833333333335" />
-        <entry key="..\:/Users/dltjd/Desktop/programming/project/BSM/BSM-AndroidApp/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/dltjd/Desktop/programming/project/BSM/BSM-AndroidApp/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/dltjd/Desktop/programming/project/BSM/BSM-AndroidApp/app/src/main/res/layout/frag_board.xml" value="0.38645833333333335" />
+        <entry key="..\:/Users/dltjd/Desktop/programming/project/BSM/BSM-AndroidApp/app/src/main/res/layout/frag_login.xml" value="0.38645833333333335" />
+        <entry key="..\:/Users/dltjd/Desktop/programming/project/BSM/BSM-AndroidApp/app/src/main/res/layout/frag_settings.xml" value="0.26666666666666666" />
         <entry key="..\:/Users/dltjd/Desktop/programming/project/BSM/BSM-AndroidApp/app/src/main/res/layout/item_board.xml" value="0.33" />
+        <entry key="..\:/Users/dltjd/Desktop/programming/project/BSM/BSM-AndroidApp/app/src/main/res/menu/menu.xml" value="0.38645833333333335" />
+        <entry key="..\:/Users/dltjd/Desktop/programming/project/BSM/BSM-AndroidApp/app/src/main/res/menu/menu_board.xml" value="0.38645833333333335" />
+        <entry key="..\:/Users/dltjd/Desktop/programming/project/BSM/BSM-AndroidApp/app/src/main/res/menu/menu_main.xml" value="0.38645833333333335" />
         <entry key="..\:/Users/dltjd/Desktop/programming/project/BSM/BSM-AndroidApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.27760416666666665" />
       </map>
     </option>

@@ -50,7 +50,7 @@ public class BoardViewActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         BoardData boardData = (BoardData) intent.getSerializableExtra("boardData");
-        post("board", boardData.getPostNo());
+        post(boardData.getBoardType(), boardData.getPostNo());
     }
 
     private void post(String boardType, int post_no){

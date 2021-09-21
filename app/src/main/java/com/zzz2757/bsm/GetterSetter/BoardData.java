@@ -3,7 +3,7 @@ package com.zzz2757.bsm.GetterSetter;
 import java.io.Serializable;
 
 public class BoardData implements Serializable {
-    private int status, postNo, postComments, memberCode, postHit, postLike;
+    private int postNo, postComments, memberCode, postHit, postLike;
     private String boardType, postTitle,memberNickname, postDate;
 
     public BoardData(String boardType, int post_no, String postTitle, int postComments, int memberCode, String memberNickname, String postDate, int postHit, int postLike){
@@ -18,9 +18,6 @@ public class BoardData implements Serializable {
         this.postLike = postLike;
     }
 
-    public int getStatus() {
-        return status;
-    }
     public String getBoardType() {
         return boardType;
     }
@@ -47,9 +44,6 @@ public class BoardData implements Serializable {
     }
     public int getPostLike() {
         return postLike;
-    }
-    public void setStatus(int status) {
-        this.status = status;
     }
     public void setBoardType(String boardType) {
         this.boardType = boardType;
