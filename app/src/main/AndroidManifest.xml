@@ -13,12 +13,15 @@
         android:theme="@style/Theme.BSM">
         <activity
             android:name=".Board.BoardViewActivity"
+            android:configChanges="screenSize|orientation"
             android:exported="true" />
         <activity
             android:name=".Board.BoardActivity"
+            android:configChanges="screenSize|orientation"
             android:exported="true" />
         <activity
             android:name=".MainActivity"
+            android:configChanges="screenSize|orientation"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

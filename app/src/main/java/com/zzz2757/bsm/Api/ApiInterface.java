@@ -37,4 +37,19 @@ public interface ApiInterface
             @Field("boardType") String boardType,
             @Field("post_no") int post_no
     );
+    @FormUrlEncoded
+    @POST("database")
+    Call<String> comment(
+            @Field("command_type") String command_type,
+            @Field("boardType") String boardType,
+            @Field("post_no") int post_no
+    );
+    @FormUrlEncoded
+    @POST("database")
+    Call<GetterSetter> commentWrtie(
+            @Field("command_type") String command_type,
+            @Field("boardType") String boardType,
+            @Field("post_no") int post_no,
+            @Field("post_comment") String post_comment
+    );
 }

@@ -38,16 +38,13 @@ public class BoardFrag extends Fragment {
     private View view;
     private String boardType;
 
-    public BoardFrag(String boardType) {
-        this.boardType = boardType;
-    }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
         view = inflater.inflate(R.layout.frag_board,container,false);
         context = getContext();
+        boardType = getArguments().getString("boardType");
 
         boardList = new ArrayList<>();
         RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.board_recycler);
@@ -80,7 +77,7 @@ public class BoardFrag extends Fragment {
                         try {
                             JSONObject jsonObject = new JSONObject(response.body().toString());
                             JSONArray arr_board = jsonObject.getJSONArray("arr_board");
-                            for(int i = 0; i < arr_board.length(); i++){
+                            for(int i=0;i<arr_board.length();i++){
                                 JSONObject boardObject = arr_board.getJSONObject(i);
                                 boardList.add(new BoardData(
                                         boardObject.getString("boardType"),

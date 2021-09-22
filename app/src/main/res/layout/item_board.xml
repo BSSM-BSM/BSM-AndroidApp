@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginVertical="5dp">
+    android:layout_marginVertical="5dp"
+    android:paddingHorizontal="10dp">
 
     <RelativeLayout
         android:id="@+id/post_title_bar"
@@ -16,12 +16,12 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:ellipsize="end"
+            android:paddingHorizontal="5dp"
             android:singleLine="true"
-            android:paddingHorizontal="10dp"
             android:text="no"
             android:textAlignment="viewStart"
-            android:textSize="16sp"
-            android:textColor="@color/gray"/>
+            android:textColor="@color/gray"
+            android:textSize="13sp" />
 
         <TextView
             android:id="@+id/post_title"
@@ -31,7 +31,7 @@
             android:layout_toRightOf="@id/post_no"
             android:ellipsize="end"
             android:singleLine="true"
-            android:paddingHorizontal="10dp"
+            android:paddingHorizontal="5dp"
             android:text="title"
             android:textAlignment="viewStart"
             android:textSize="18sp" />
@@ -48,14 +48,14 @@
             android:id="@+id/member_nickname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="220dp"
             android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/post_hit"
             android:ellipsize="end"
+            android:paddingHorizontal="5dp"
             android:singleLine="true"
-            android:paddingHorizontal="10dp"
             android:text="nickname"
             android:textAlignment="viewStart"
-            android:textSize="16sp" />
+            android:textSize="13sp" />
 
         <TextView
             android:id="@+id/post_hit"
@@ -64,12 +64,12 @@
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@id/post_date"
             android:ellipsize="end"
+            android:paddingHorizontal="5dp"
             android:singleLine="true"
-            android:paddingHorizontal="10dp"
             android:text="hit"
             android:textAlignment="viewStart"
-            android:textSize="15sp"
-            android:textColor="@color/gray"/>
+            android:textColor="@color/gray"
+            android:textSize="13sp" />
 
         <TextView
             android:id="@+id/post_date"
@@ -79,10 +79,10 @@
             android:layout_alignParentRight="true"
             android:ellipsize="end"
             android:singleLine="true"
-            android:paddingHorizontal="10dp"
+            android:paddingHorizontal="5dp"
             android:text="xxxx-xx-xx xx:xx:xx"
             android:textAlignment="viewStart"
-            android:textSize="15sp"
+            android:textSize="13sp"
             android:textColor="@color/gray"/>
 
     </RelativeLayout>

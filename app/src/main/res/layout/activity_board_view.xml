@@ -7,99 +7,162 @@
     tools:context=".Board.BoardViewActivity">
 
     <RelativeLayout
-        android:id="@+id/post_title_bar"
+        android:id="@+id/post_top_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:paddingHorizontal="10dp">
 
-        <TextView
-            android:id="@+id/post_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="10dp"
-            android:text="Title"
-            android:textSize="20sp"/>
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/post_info_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/post_title_bar"
-        android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/post_title_bar">
-
-        <TextView
-            android:id="@+id/member_nickname"
+        <RelativeLayout
+            android:id="@+id/post_title_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="220dp"
-            android:layout_centerVertical="true"
-            android:ellipsize="end"
-            android:singleLine="true"
-            android:paddingHorizontal="10dp"
-            android:text="nickname"
-            android:textAlignment="viewStart"
-            android:textSize="16sp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/post_comments"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@id/post_hit"
-            android:ellipsize="end"
-            android:singleLine="true"
-            android:paddingHorizontal="10dp"
-            android:text="comments"
-            android:textAlignment="viewStart"
-            android:textSize="15sp"
-            android:textColor="@color/gray"/>
+            <TextView
+                android:id="@+id/post_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:ellipsize="end"
+                android:paddingHorizontal="5dp"
+                android:singleLine="true"
+                android:text="no"
+                android:textAlignment="viewStart"
+                android:textColor="@color/gray"
+                android:textSize="14sp" />
 
-        <TextView
-            android:id="@+id/post_hit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@id/post_date"
-            android:ellipsize="end"
-            android:singleLine="true"
-            android:paddingHorizontal="10dp"
-            android:text="hit"
-            android:textAlignment="viewStart"
-            android:textSize="15sp"
-            android:textColor="@color/gray"/>
+            <TextView
+                android:id="@+id/post_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/post_no"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:paddingHorizontal="5dp"
+                android:text="title"
+                android:textAlignment="viewStart"
+                android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/post_date"
-            android:layout_width="wrap_content"
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/post_info_bar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:ellipsize="end"
-            android:singleLine="true"
-            android:paddingHorizontal="10dp"
-            android:text="xxxx-xx-xx xx:xx:xx"
-            android:textAlignment="viewStart"
-            android:textSize="15sp"
-            android:textColor="@color/gray"/>
+            android:layout_below="@id/post_title_bar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/post_title_bar">
+
+            <TextView
+                android:id="@+id/member_nickname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/post_comments"
+                android:ellipsize="end"
+                android:paddingHorizontal="5dp"
+                android:singleLine="true"
+                android:text="nickname"
+                android:textAlignment="viewStart"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/post_comments"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/post_hit"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:paddingHorizontal="5dp"
+                android:text="comments"
+                android:textAlignment="viewStart"
+                android:textSize="14sp"
+                android:textColor="@color/gray"/>
+
+            <TextView
+                android:id="@+id/post_hit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/post_date"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:paddingHorizontal="5dp"
+                android:text="hit"
+                android:textAlignment="viewStart"
+                android:textSize="14sp"
+                android:textColor="@color/gray"/>
+
+            <TextView
+                android:id="@+id/post_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:paddingHorizontal="5dp"
+                android:text="xxxx-xx-xx xx:xx:xx"
+                android:textAlignment="viewStart"
+                android:textSize="14sp"
+                android:textColor="@color/gray"/>
+
+        </RelativeLayout>
 
     </RelativeLayout>
 
     <WebView
         android:id="@+id/post_content_webview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="48dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/post_info_bar" />
+        app:layout_constraintTop_toBottomOf="@+id/post_top_bar" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/comment_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/post_content_webview" />
+
+    <RelativeLayout
+        android:id="@+id/post_edit_comment_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:paddingHorizontal="10dp">
+
+
+        <EditText
+            android:id="@+id/comment_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/submit_comment_btn"
+            android:inputType="text"
+            android:hint="댓글 입력" />
+
+        <Button
+            android:id="@+id/submit_comment_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="등록"
+            android:onClick="onClickSubmit"/>
+
+   </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

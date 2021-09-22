@@ -37,8 +37,15 @@ public class BoardActivity extends AppCompatActivity {
                 return true;
             }
         });
-        boardFrag = new BoardFrag("board");
-        blogFrag = new BoardFrag("blog");
+        Bundle boardBundle = new Bundle(1);
+        boardFrag = new BoardFrag();
+        boardBundle.putString("boardType", "board");
+        boardFrag.setArguments(boardBundle);
+
+        Bundle blogBundle = new Bundle(1);
+        blogFrag = new BoardFrag();
+        blogBundle.putString("boardType", "blog");
+        blogFrag.setArguments(blogBundle);
         setFrag(0);
     }
 
