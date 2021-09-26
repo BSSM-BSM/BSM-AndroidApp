@@ -35,7 +35,7 @@ import retrofit2.Response;
 public class BoardViewActivity extends AppCompatActivity {
     private int postNo;
     private String boardType;
-    TextView postNo_text, postTitle, memberNickname, postComments, postHit, postDate;
+    TextView postNo_text, postTitle, memberNickname, postComments, postHit, postDate, postLike;
     PostData getSet = new PostData();
     WebView webView;
     private ArrayList<CommentData> commentList;
@@ -54,6 +54,7 @@ public class BoardViewActivity extends AppCompatActivity {
         postComments = (TextView)findViewById(R.id.post_comments);
         postHit = (TextView)findViewById(R.id.post_hit);
         postDate = (TextView)findViewById(R.id.post_date);
+        postLike = (TextView) findViewById(R.id.post_like);
 
         webView = (WebView)findViewById(R.id.post_content_webview);
         final WebSettings webSet = webView.getSettings();
@@ -101,6 +102,7 @@ public class BoardViewActivity extends AppCompatActivity {
                         postComments.setText(response.body().getPost_comments()+" 댓글");
                         postHit.setText("조회 "+response.body().getPost_hit());
                         postDate.setText(response.body().getPost_date());
+                        postLike.setText(response.body().getPost_like());
                         webView.loadDataWithBaseURL("https://bssm.kro.kr.", response.body().getPost_content(), "text/html; charset=utf8", "UTF-8", null);
                     }
                 }
@@ -154,7 +156,7 @@ public class BoardViewActivity extends AppCompatActivity {
         });
     }
 
-    private void commentWrite(String boardType, int post_no, String comment){
+    private void commentWrite(String boardType, int post_no, String comment, EditText edit_comment){
         ApiInterface apiInterface = ApiClient.getApiClient(this).create(ApiInterface.class);
         Call<GetterSetter> call = apiInterface.commentWrtie("comment_write", boardType, post_no, comment);
         call.enqueue(new Callback<GetterSetter>() {
@@ -165,6 +167,7 @@ public class BoardViewActivity extends AppCompatActivity {
                     if(getSet.getStatus()!=1){
                         ErrorCode.errorCode(getApplicationContext(), getSet.getStatus());
                     }else{
+                        edit_comment.setText(null);
                         commentList = new ArrayList<>();
                         commentAdapter = new CommentAdapter(commentList, getApplicationContext());
                         recyclerView.removeAllViewsInLayout();
@@ -182,6 +185,46 @@ public class BoardViewActivity extends AppCompatActivity {
 
     public void onClickSubmit(View view) {
         EditText edit_comment = (EditText)findViewById(R.id.comment_edit);
-        commentWrite(boardType, postNo, edit_comment.getText().toString());
+        commentWrite(boardType, postNo, edit_comment.getText().toString(), edit_comment);
+    }
+
+    private void likeSend(String boardType, int post_no, int like){
+        ApiInterface apiInterface = ApiClient.getApiClient(this).create(ApiInterface.class);
+        Call<String> call = apiInterface.likeSend("like", boardType, post_no, like);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if(response.isSuccessful()&&response.body()!=null){
+                    try {
+                        JSONObject jsonObject = new JSONObject(response.body().toString());
+                        getSet.setStatus(Integer.parseInt(jsonObject.getString("status")));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    if(getSet.getStatus()!=1){
+                        ErrorCode.errorCode(getApplicationContext(), getSet.getStatus());
+                    }else{
+                        try {
+                            JSONObject jsonObject = new JSONObject(response.body().toString());
+                            postLike.setText(jsonObject.getString("post_like"));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "서버와 연결에 실패하였습니다.\n" + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void onClickPostLike(View view) {
+        likeSend(boardType, postNo, 1);
+    }
+
+    public void onClickPostDislike(View view) {
+        likeSend(boardType, postNo, -1);
     }
 }

@@ -88,7 +88,7 @@ public class BoardFrag extends Fragment {
                                         boardObject.getString("memberNickname"),
                                         boardObject.getString("postDate"),
                                         Integer.parseInt(boardObject.getString("postHit")),
-                                        Integer.parseInt(boardObject.getString("postLike"))
+                                        Integer.parseInt(boardObject.getString("post_like"))
                                 ));
                             }
                         } catch (JSONException e) {

@@ -52,4 +52,12 @@ public interface ApiInterface
             @Field("post_no") int post_no,
             @Field("post_comment") String post_comment
     );
+    @FormUrlEncoded
+    @POST("database")
+    Call<String> likeSend(
+            @Field("command_type") String command_type,
+            @Field("boardType") String boardType,
+            @Field("post_no") int post_no,
+            @Field("like") int like
+    );
 }
