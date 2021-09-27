@@ -10,6 +10,7 @@
         android:id="@+id/post_top_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintVertical_weight="0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -120,21 +121,34 @@
 
     </RelativeLayout>
 
+    <WebView
+        android:id="@+id/post_content_webview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintVertical_weight="0"
+        android:layout_marginTop="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/post_top_bar" />
+
     <RelativeLayout
         android:id="@+id/post_like_wrap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintVertical_weight="0"
+        android:layout_marginTop="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/post_top_bar">
+        app:layout_constraintTop_toBottomOf="@+id/post_content_webview">
 
         <Button
             android:id="@+id/post_like_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="좋아요"
-            android:onClick="onClickPostLike"/>
+            android:backgroundTint="@color/gray"
+            android:onClick="onClickPostLike"
+            android:text="좋아요" />
 
         <TextView
             android:id="@+id/post_like"
@@ -151,36 +165,33 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/post_like"
-            android:text="싫어요"
-            android:onClick="onClickPostDislike"/>
+            android:backgroundTint="@color/gray"
+            android:onClick="onClickPostDislike"
+            android:text="싫어요" />
 
 
     </RelativeLayout>
-    <WebView
-        android:id="@+id/post_content_webview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/post_like_wrap" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/comment_recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintVertical_weight="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/post_content_webview" />
+        app:layout_constraintTop_toBottomOf="@+id/post_like_wrap" />
 
     <RelativeLayout
         android:id="@+id/post_edit_comment_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintVertical_weight="0"
         android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:paddingHorizontal="10dp">
+        android:paddingHorizontal="10dp"
+        android:background="@color/background">
 
 
         <EditText

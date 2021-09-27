@@ -3,7 +3,7 @@
     <style name="Theme.BSM" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/gray</item>
-        <item name="colorPrimaryVariant">@color/dark_theme</item>
+        <item name="colorPrimaryVariant">@color/background</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/focus</item>
@@ -12,6 +12,6 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
-        <item name="android:colorBackground">@color/dark_theme</item>
+        <item name="android:colorBackground">@color/background</item>
     </style>
 </resources>

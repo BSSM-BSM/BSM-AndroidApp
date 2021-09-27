@@ -1,14 +1,17 @@
 package com.zzz2757.bsm.Board;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +39,7 @@ public class BoardViewActivity extends AppCompatActivity {
     private int postNo;
     private String boardType;
     TextView postNo_text, postTitle, memberNickname, postComments, postHit, postDate, postLike;
+    Button post_like_btn, post_dislike_btn;
     PostData getSet = new PostData();
     WebView webView;
     private ArrayList<CommentData> commentList;
@@ -55,6 +59,8 @@ public class BoardViewActivity extends AppCompatActivity {
         postHit = (TextView)findViewById(R.id.post_hit);
         postDate = (TextView)findViewById(R.id.post_date);
         postLike = (TextView) findViewById(R.id.post_like);
+        post_like_btn = (Button) findViewById(R.id.post_like_btn);
+        post_dislike_btn = (Button) findViewById(R.id.post_dislike_btn);
 
         webView = (WebView)findViewById(R.id.post_content_webview);
         final WebSettings webSet = webView.getSettings();
@@ -103,6 +109,16 @@ public class BoardViewActivity extends AppCompatActivity {
                         postHit.setText("조회 "+response.body().getPost_hit());
                         postDate.setText(response.body().getPost_date());
                         postLike.setText(response.body().getPost_like());
+                        if(response.body().getLike()>0){
+                            post_like_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.green_btn));
+                            post_dislike_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.gray));
+                        }else if(response.body().getLike()<0){
+                            post_like_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.gray));
+                            post_dislike_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.red_btn));
+                        }else{
+                            post_like_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.gray));
+                            post_dislike_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.gray));
+                        }
                         webView.loadDataWithBaseURL("https://bssm.kro.kr.", response.body().getPost_content(), "text/html; charset=utf8", "UTF-8", null);
                     }
                 }
@@ -207,6 +223,16 @@ public class BoardViewActivity extends AppCompatActivity {
                         try {
                             JSONObject jsonObject = new JSONObject(response.body().toString());
                             postLike.setText(jsonObject.getString("post_like"));
+                            if(Integer.parseInt(jsonObject.getString("like"))>0){
+                                post_like_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.green_btn));
+                                post_dislike_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.gray));
+                            }else if(Integer.parseInt(jsonObject.getString("like"))<0){
+                                post_like_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.gray));
+                                post_dislike_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.red_btn));
+                            }else{
+                                post_like_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.gray));
+                                post_dislike_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.gray));
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

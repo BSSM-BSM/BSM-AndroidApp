@@ -27,7 +27,7 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.ViewHolder> 
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        TextView post_no, post_title, member_nickname, post_date, post_hit;
+        TextView post_no, post_title, member_nickname, post_date, post_hit, post_like;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -36,6 +36,7 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.ViewHolder> 
             member_nickname = (TextView) itemView.findViewById(R.id.member_nickname);
             post_date = (TextView) itemView.findViewById(R.id.post_date);
             post_hit = (TextView) itemView.findViewById(R.id.post_hit);
+            post_like = (TextView) itemView.findViewById(R.id.post_like);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -72,6 +73,12 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.ViewHolder> 
         holder.member_nickname.setText(boardData.getMemberNickname());
         holder.post_date.setText(boardData.getPostDate());
         holder.post_hit.setText("조회 "+boardData.getPostHit());
+        if(boardData.getPostLike()>=0){
+            holder.post_like.setText(boardData.getPostLike()+"좋아요");
+        }else{
+            holder.post_like.setText( (boardData.getPostLike()*-1) +"싫어요");
+        }
+
     }
 
     @Override

@@ -1,0 +1,47 @@
+[33mcommit ca609bbd939052f8f6e9a84071447b91d1077f22[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: SW2125\dltjd <leehj050211@gmail.com>
+Date:   Sun Sep 26 22:45:45 2021 +0900
+
+    게시글 좋아요 싫어요 기능 추가
+
+[33mcommit 61d4dc3a33be7bdedcacbef726d401666dfb4311[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: SW2125\dltjd <leehj050211@gmail.com>
+Date:   Wed Sep 22 17:58:03 2021 +0900
+
+    댓글 기능 추가, 다크모드 전환 크래시 수정
+
+[33mcommit 253b1ba9023a109a1a2306e8dbb2d0657e1410aa[m
+Author: SW2125\dltjd <leehj050211@gmail.com>
+Date:   Tue Sep 21 22:46:33 2021 +0900
+
+    하단 네비게이션 바 추가, 코드 최적화
+
+[33mcommit ef6582804e36d76965ac7e6633333417c2aa7406[m
+Author: SW2125\dltjd <leehj050211@gmail.com>
+Date:   Tue Sep 21 14:48:20 2021 +0900
+
+    게시글 뷰어 추가, 게시판 디자인 수정, 업데이트 확인 기능
+
+[33mcommit 6db41b543148ab812b68e1d1950db5a351ab5e2a[m
+Author: SW2125\dltjd <leehj050211@gmail.com>
+Date:   Mon Sep 20 23:12:56 2021 +0900
+
+    게시판 불러오기 기능 추가
+
+[33mcommit c5eba432d867c7b4e6a31b75ff8c166a031f16c4[m
+Author: SW2125\dltjd <leehj050211@gmail.com>
+Date:   Mon Sep 20 00:53:25 2021 +0900
+
+    쿠키매니저 등록
+
+[33mcommit 12d0fd6fe0c4499ab05552542be80427e07362f5[m
+Author: SW2125\dltjd <leehj050211@gmail.com>
+Date:   Sun Sep 19 19:36:37 2021 +0900
+
+    로그인 기능 테스트
+
+[33mcommit 4a38416c778e21275a8921522ce1c542df86a21e[m
+Author: SW2125\dltjd <leehj050211@gmail.com>
+Date:   Sat Sep 18 22:37:36 2021 +0900
+
+    Retrofit2로 HTTP통신

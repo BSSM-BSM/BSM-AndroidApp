@@ -1,7 +1,7 @@
 package com.zzz2757.bsm.GetterSetter;
 
 public class PostData {
-    private int status, postNo;
+    private int status, postNo, like;
     private String board_type, post_title, post_content, post_comments, member_code, member_nickname, post_date, post_hit, post_like;
 
     public int getStatus() {
@@ -37,6 +37,9 @@ public class PostData {
     public String getPost_like() {
         return post_like;
     }
+    public int getLike() {
+        return like;
+    }
     public void setStatus(int status) {
         this.status = status;
     }
@@ -69,5 +72,8 @@ public class PostData {
     }
     public void setPost_like(String post_like) {
         this.post_like = post_like;
+    }
+    public void setLike(int like) {
+        this.like = like;
     }
 }
