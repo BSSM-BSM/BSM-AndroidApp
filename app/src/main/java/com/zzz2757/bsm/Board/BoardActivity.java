@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -11,6 +13,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.zzz2757.bsm.R;
 
 public class BoardActivity extends AppCompatActivity {
+    private String boardType;
+
     private BottomNavigationView bottomNavigationView;
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
@@ -33,6 +37,10 @@ public class BoardActivity extends AppCompatActivity {
                     case R.id.action_blog:
                         setFrag(1);
                         break;
+                    case R.id.action_post_write:
+                        setFrag(2);
+                        break;
+
                 }
                 return true;
             }
@@ -54,13 +62,19 @@ public class BoardActivity extends AppCompatActivity {
         fragmentTransaction= fragmentManager.beginTransaction();
         switch(n){
             case 0:
+                boardType = "board";
                 fragmentTransaction.replace(R.id.Main_Frame, boardFrag);
                 fragmentTransaction.commit();
                 break;
             case 1:
+                boardType = "blog";
                 fragmentTransaction.replace(R.id.Main_Frame, blogFrag);
                 fragmentTransaction.commit();
                 break;
+            case 2:
+                Intent intent = new Intent(this, PostWriteActivity.class);
+                intent.putExtra("boardType", boardType);
+                startActivity(intent);
         }
     }
 }

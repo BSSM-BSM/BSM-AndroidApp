@@ -9,4 +9,7 @@
         android:id="@+id/action_blog"
         android:title="블로그"/>
 
+    <item
+        android:id="@+id/action_post_write"
+        android:title="글쓰기"/>
 </menu>
