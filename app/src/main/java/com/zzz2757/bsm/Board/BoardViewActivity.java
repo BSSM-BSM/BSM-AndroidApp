@@ -253,4 +253,11 @@ public class BoardViewActivity extends AppCompatActivity {
     public void onClickPostDislike(View view) {
         likeSend(boardType, postNo, -1);
     }
+
+    public void onClickPostModify(View view) {
+        Intent intent = new Intent(this, PostWriteActivity.class);
+        intent.putExtra("boardType", "board");
+        intent.putExtra("postNo", postNo);
+        this.startActivity(intent);
+    }
 }

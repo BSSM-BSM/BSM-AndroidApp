@@ -11,7 +11,7 @@ import okhttp3.CookieJar;
 import okhttp3.JavaNetCookieJar;
 
 public class Common {
-    private static final String BASE_URL = "http://bssm.kro.kr/";
+    private static final String BASE_URL = "https://bssm.kro.kr/";
     public static CookieJar cookieJar;
 
     public static String getBaseUrl() {

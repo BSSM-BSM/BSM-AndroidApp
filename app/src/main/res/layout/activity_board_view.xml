@@ -132,7 +132,7 @@
         app:layout_constraintTop_toBottomOf="@+id/post_top_bar" />
 
     <RelativeLayout
-        android:id="@+id/post_like_wrap"
+        android:id="@+id/post_menu_wrap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintVertical_weight="0"
@@ -140,6 +140,26 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/post_content_webview">
+
+        <Button
+            android:id="@+id/post_modify_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:backgroundTint="@color/gray"
+            android:onClick="onClickPostModify"
+            android:text="글수정" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/post_like_wrap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintVertical_weight="0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/post_menu_wrap">
 
         <Button
             android:id="@+id/post_like_btn"
@@ -194,14 +214,13 @@
         android:paddingHorizontal="10dp"
         android:background="@color/background">
 
-
         <EditText
             android:id="@+id/comment_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@id/submit_comment_btn"
-            android:inputType="text"
-            android:hint="댓글 입력" />
+            android:hint="댓글 입력"
+            android:inputType="text" />
 
         <Button
             android:id="@+id/submit_comment_btn"

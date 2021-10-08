@@ -57,9 +57,14 @@ public class PostWriteActivity extends AppCompatActivity {
         }
 
         Intent intent = getIntent();
-        String boardType = (String) intent.getSerializableExtra("boardType");
-
-        webView.loadUrl(Common.getBaseUrl() +"app/post_write?boardType="+boardType);
+        Bundle bundle = intent.getExtras();
+        String boardType = bundle.getString("boardType");
+        int post_no = bundle.getInt("postNo");
+        if(post_no==0){
+            webView.loadUrl(Common.getBaseUrl() +"app/post_write?boardType="+boardType);
+        }else{
+            webView.loadUrl(Common.getBaseUrl() +"app/post_write?boardType="+boardType+"&post_no="+post_no);
+        }
     }
 
     public class MyWebChromeClient extends WebChromeClient {
