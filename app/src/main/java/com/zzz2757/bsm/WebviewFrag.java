@@ -1,39 +1,41 @@
-package com.zzz2757.bsm.Board;
+package com.zzz2757.bsm;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-
-import android.app.Activity;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
+import android.view.ViewGroup;
 import android.webkit.CookieManager;
 import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
-import com.zzz2757.bsm.Common;
-import com.zzz2757.bsm.R;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 
 import java.util.List;
 
 import okhttp3.Cookie;
 import okhttp3.HttpUrl;
 
-public class PostWriteActivity extends AppCompatActivity {
-    WebView webView;
+public class WebviewFrag extends Fragment {
+    private View view;
+    private String page;
+    private WebView webView;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_post_write);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
+    {
+        view = inflater.inflate(R.layout.frag_webview,container,false);
 
-        webView = (WebView)findViewById(R.id.post_write_webview);
-        webView.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.background));
+        page = getArguments().getString("page");
+        webView = (WebView)view.findViewById(R.id.webview);
+        webView.setBackgroundColor(ContextCompat.getColor(view.getContext(), R.color.background));
         final WebSettings webSet = webView.getSettings();
         webSet.setJavaScriptEnabled(true);
         webSet.setJavaScriptCanOpenWindowsAutomatically(true);
@@ -45,7 +47,7 @@ public class PostWriteActivity extends AppCompatActivity {
         webSet.setDisplayZoomControls(false);
         webSet.setDefaultTextEncodingName("utf-8");
 
-        webView.setWebChromeClient(new MyWebChromeClient());
+        webView.setWebChromeClient(new WebviewFrag.MyWebChromeClient());
 
         CookieManager cookieManager = CookieManager.getInstance();
         cookieManager.setAcceptCookie(true);
@@ -57,26 +59,12 @@ public class PostWriteActivity extends AppCompatActivity {
             String cookieString = cookie.name() + "=" + cookie.value() + ";";
             cookieManager.setCookie(cookie.domain(), cookieString);
         }
+        webView.loadUrl(Common.getBaseUrl() +"app/"+page);
 
-        Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
-        String boardType = bundle.getString("boardType");
-        int post_no = bundle.getInt("postNo");
-        if(post_no==0){
-            webView.loadUrl(Common.getBaseUrl() +"app/post_write/"+boardType);
-        }else{
-            webView.loadUrl(Common.getBaseUrl() +"app/post_write/"+boardType+"?post_no="+post_no);
-        }
+        return view;
     }
 
     public class MyWebChromeClient extends WebChromeClient {
-        @Override
-        public void onCloseWindow(WebView window) {
-            window.setVisibility(View.GONE);
-            window.destroy();
-            finish();
-            super.onCloseWindow(window);
-        }
         @Override
         public boolean onJsAlert(WebView view, String url, String message, final JsResult result) {
             new AlertDialog.Builder(view.getContext())

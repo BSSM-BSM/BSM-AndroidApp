@@ -19,7 +19,7 @@ public class BoardActivity extends AppCompatActivity {
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
     private BoardFrag boardFrag;
-    private BoardFrag blogFrag;
+    private BoardFrag anonymousFrag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +34,7 @@ public class BoardActivity extends AppCompatActivity {
                     case R.id.action_board:
                         setFrag(0);
                         break;
-                    case R.id.action_blog:
+                    case R.id.action_anonymous:
                         setFrag(1);
                         break;
                     case R.id.action_post_write:
@@ -50,10 +50,10 @@ public class BoardActivity extends AppCompatActivity {
         boardBundle.putString("boardType", "board");
         boardFrag.setArguments(boardBundle);
 
-        Bundle blogBundle = new Bundle(1);
-        blogFrag = new BoardFrag();
-        blogBundle.putString("boardType", "blog");
-        blogFrag.setArguments(blogBundle);
+        Bundle anonymousBundle = new Bundle(1);
+        anonymousFrag = new BoardFrag();
+        anonymousBundle.putString("boardType", "anonymous");
+        anonymousFrag.setArguments(anonymousBundle);
         setFrag(0);
     }
 
@@ -67,8 +67,8 @@ public class BoardActivity extends AppCompatActivity {
                 fragmentTransaction.commit();
                 break;
             case 1:
-                boardType = "blog";
-                fragmentTransaction.replace(R.id.Main_Frame, blogFrag);
+                boardType = "anonymous";
+                fragmentTransaction.replace(R.id.Main_Frame, anonymousFrag);
                 fragmentTransaction.commit();
                 break;
             case 2:

@@ -6,8 +6,8 @@
         android:title="자유게시판"/>
 
     <item
-        android:id="@+id/action_blog"
-        android:title="블로그"/>
+        android:id="@+id/action_anonymous"
+        android:title="익명게시판"/>
 
     <item
         android:id="@+id/action_post_write"

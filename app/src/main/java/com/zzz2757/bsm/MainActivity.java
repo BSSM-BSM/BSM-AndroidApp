@@ -17,6 +17,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.zzz2757.bsm.Api.ApiClient;
 import com.zzz2757.bsm.Api.ApiInterface;
 import com.zzz2757.bsm.Board.BoardActivity;
+import com.zzz2757.bsm.Board.BoardFrag;
 import com.zzz2757.bsm.GetterSetter.GetterSetter;
 
 import org.json.JSONException;
@@ -36,11 +37,16 @@ public class MainActivity extends AppCompatActivity{
     private FragmentTransaction fragmentTransaction;
     private LoginFrag loginFrag;
     private SettingFrag settingFrag;
+    private WebviewFrag mealFrag;
+    private WebviewFrag timetableFrag;
+    private Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        bundle = new Bundle(1);
 
         bottomNavigationView = findViewById(R.id.bottomNav);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener(){
@@ -53,8 +59,15 @@ public class MainActivity extends AppCompatActivity{
                     case R.id.action_board:
                         setFrag(1);
                         break;
-                    case R.id.action_setting:
+                    case R.id.action_meal:
+                        bundle.putString("page", "meal");
+                        mealFrag.setArguments(bundle);
                         setFrag(2);
+                        break;
+                    case R.id.action_timetable:
+                        bundle.putString("page", "timetable");
+                        timetableFrag.setArguments(bundle);
+                        setFrag(3);
                         break;
                 }
                 return true;
@@ -62,8 +75,10 @@ public class MainActivity extends AppCompatActivity{
         });
         loginFrag = new LoginFrag();
         settingFrag = new SettingFrag();
-        setFrag(0);
+        mealFrag = new WebviewFrag();
+        timetableFrag = new WebviewFrag();
 
+        setFrag(0);
         version();
     }
 
@@ -80,7 +95,11 @@ public class MainActivity extends AppCompatActivity{
                 startActivity(intent);
                 break;
             case 2:
-                fragmentTransaction.replace(R.id.Main_Frame, settingFrag);
+                fragmentTransaction.replace(R.id.Main_Frame, mealFrag);
+                fragmentTransaction.commit();
+                break;
+            case 3:
+                fragmentTransaction.replace(R.id.Main_Frame, timetableFrag);
                 fragmentTransaction.commit();
                 break;
         }
