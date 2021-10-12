@@ -44,8 +44,8 @@
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@id/post_no"
                 android:ellipsize="end"
-                android:singleLine="true"
                 android:paddingHorizontal="5dp"
+                android:singleLine="true"
                 android:text="title"
                 android:textAlignment="viewStart"
                 android:textSize="18sp" />
@@ -121,93 +121,106 @@
 
     </RelativeLayout>
 
-    <WebView
-        android:id="@+id/post_content_webview"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintVertical_weight="0"
-        android:layout_marginTop="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/post_top_bar" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="46dp"
+        android:layout_marginBottom="48dp"
+        app:layout_constraintTop_toBottomOf="@+id/post_top_bar" >
 
-    <RelativeLayout
-        android:id="@+id/post_menu_wrap"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintVertical_weight="0"
-        android:layout_marginTop="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/post_content_webview">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
 
-        <Button
-            android:id="@+id/post_modify_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:backgroundTint="@color/gray"
-            android:onClick="onClickPostModify"
-            android:text="글수정" />
+            <WebView
+                android:id="@+id/post_content_webview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintVertical_weight="0"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-    </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/post_menu_wrap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintVertical_weight="0"
+                android:layout_marginTop="25dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/post_content_webview">
 
-    <RelativeLayout
-        android:id="@+id/post_like_wrap"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintVertical_weight="0"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/post_menu_wrap">
+                <Button
+                    android:id="@+id/post_modify_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:backgroundTint="@color/gray"
+                    android:onClick="onClickPostModify"
+                    android:text="글수정" />
 
-        <Button
-            android:id="@+id/post_like_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:backgroundTint="@color/gray"
-            android:onClick="onClickPostLike"
-            android:text="좋아요" />
+            </RelativeLayout>
 
-        <TextView
-            android:id="@+id/post_like"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/post_like_btn"
-            android:layout_margin="10dp"
-            android:text="0"/>
+            <RelativeLayout
+                android:id="@+id/post_like_wrap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintVertical_weight="0"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/post_menu_wrap">
 
-        <Button
-            android:id="@+id/post_dislike_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/post_like"
-            android:backgroundTint="@color/gray"
-            android:onClick="onClickPostDislike"
-            android:text="싫어요" />
+                <Button
+                    android:id="@+id/post_like_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:backgroundTint="@color/gray"
+                    android:onClick="onClickPostLike"
+                    android:text="좋아요" />
+
+                <TextView
+                    android:id="@+id/post_like"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/post_like_btn"
+                    android:layout_margin="10dp"
+                    android:text="0"/>
+
+                <Button
+                    android:id="@+id/post_dislike_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/post_like"
+                    android:backgroundTint="@color/gray"
+                    android:onClick="onClickPostDislike"
+                    android:text="싫어요" />
 
 
-    </RelativeLayout>
+            </RelativeLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/comment_recycler"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="50dp"
-        app:layout_constraintVertical_weight="1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/post_like_wrap" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/comment_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintVertical_weight="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/post_like_wrap" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
     <RelativeLayout
         android:id="@+id/post_edit_comment_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintVertical_weight="0"
-        android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

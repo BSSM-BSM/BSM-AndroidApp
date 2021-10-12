@@ -10,8 +10,8 @@ android {
         applicationId "com.zzz2757.bsm"
         minSdk 21
         targetSdk 30
-        versionCode 3
-        versionName "Beta 0.2"
+        versionCode 4
+        versionName "Beta 0.2.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

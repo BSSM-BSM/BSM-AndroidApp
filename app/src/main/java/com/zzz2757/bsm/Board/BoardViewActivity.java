@@ -46,6 +46,7 @@ public class BoardViewActivity extends AppCompatActivity {
     private CommentAdapter commentAdapter;
     RecyclerView recyclerView;
     LinearLayoutManager manager;
+    String webviewStyle = "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><style>img{width:100%!important;}span{display:inline-block;}</style>";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,9 +70,7 @@ public class BoardViewActivity extends AppCompatActivity {
         webSet.setSupportMultipleWindows(true);
         webSet.setAllowFileAccessFromFileURLs(true);
         webSet.setDomStorageEnabled(true);
-        webSet.setSupportZoom(true);
-        webSet.setBuiltInZoomControls(true);
-        webSet.setDisplayZoomControls(false);
+        webSet.setSupportZoom(false);
         webSet.setDefaultTextEncodingName("utf-8");
 
         Intent intent = getIntent();
@@ -119,7 +118,7 @@ public class BoardViewActivity extends AppCompatActivity {
                             post_like_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.gray));
                             post_dislike_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.gray));
                         }
-                        webView.loadDataWithBaseURL("https://bssm.kro.kr.", response.body().getPost_content(), "text/html; charset=utf8", "UTF-8", null);
+                        webView.loadDataWithBaseURL("https://bssm.kro.kr.", "<!DOCTYPE HTML><html lang=\"kr\"><head>" +webviewStyle+"</head><body>"+response.body().getPost_content()+"</body></html>", "text/html; charset=utf8", "UTF-8", null);
                     }
                 }
             }
@@ -256,7 +255,7 @@ public class BoardViewActivity extends AppCompatActivity {
 
     public void onClickPostModify(View view) {
         Intent intent = new Intent(this, PostWriteActivity.class);
-        intent.putExtra("boardType", "board");
+        intent.putExtra("boardType", boardType);
         intent.putExtra("postNo", postNo);
         this.startActivity(intent);
     }
