@@ -6,7 +6,8 @@ import android.widget.Toast;
 public class ErrorCode{
     public static void errorCode(Context context, int error_code){
         String[] error_msg = {
-                "", "",
+                "서버와의 연결에 실패하였습니다.",
+                "정상 처리되었습니다.",
                 "정상적인 접근이 아닙니다.",
                 "로그인 세션 저장에 실패하였습니다.",
                 "id 또는 password가 맞지 않습니다.",
@@ -24,9 +25,14 @@ public class ErrorCode{
                 "잘못된 검색 대상입니다.",
                 "게시글 번호가 없습니다.",
                 "삭제된 게시글 입니다.",
-                "정상적인 접근이 아닙니다 로그인 해주세요.",
-                "게시글 작성자가 아닙니다.",
                 "로그인후 이용 가능 합니다.",
+                "권한이 없습니다.",
+                "비밀번호 재설정이 필요합니다.",
+                "파일 업로드에 실패하였습니다.",
+                "게시글 작성에 실패하였습니다.",
+                "게시글 작성자가 아닙니다.",
+                "학생정보가 맞지 않습니다.",
+                "인증코드 전송에 실패하였습니다.",
         };
         Toast.makeText(context, "에러코드 "+error_code+"\n"+ error_msg[error_code], Toast.LENGTH_SHORT).show();
     }
