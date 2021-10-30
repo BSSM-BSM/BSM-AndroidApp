@@ -53,20 +53,16 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch(menuItem.getItemId()){
-                    case R.id.action_login:
+                    case R.id.action_meal:
                         setFrag(0);
                         break;
-                    case R.id.action_board:
+                    case R.id.action_timetable:
                         setFrag(1);
                         break;
-                    case R.id.action_meal:
-                        bundle.putString("page", "meal");
-                        mealFrag.setArguments(bundle);
+                    case R.id.action_board:
                         setFrag(2);
                         break;
-                    case R.id.action_timetable:
-                        bundle.putString("page", "timetable");
-                        timetableFrag.setArguments(bundle);
+                    case R.id.action_login:
                         setFrag(3);
                         break;
                 }
@@ -87,19 +83,23 @@ public class MainActivity extends AppCompatActivity{
         fragmentTransaction= fragmentManager.beginTransaction();
         switch(n){
             case 0:
-                fragmentTransaction.replace(R.id.Main_Frame, loginFrag);
-                fragmentTransaction.commit();
-                break;
-            case 1:
-                Intent intent = new Intent(this, BoardActivity.class);
-                startActivity(intent);
-                break;
-            case 2:
+                bundle.putString("page", "meal");
+                mealFrag.setArguments(bundle);
                 fragmentTransaction.replace(R.id.Main_Frame, mealFrag);
                 fragmentTransaction.commit();
                 break;
-            case 3:
+            case 1:
+                bundle.putString("page", "timetable");
+                timetableFrag.setArguments(bundle);
                 fragmentTransaction.replace(R.id.Main_Frame, timetableFrag);
+                fragmentTransaction.commit();
+                break;
+            case 2:
+                Intent intent = new Intent(this, BoardActivity.class);
+                startActivity(intent);
+                break;
+            case 3:
+                fragmentTransaction.replace(R.id.Main_Frame, loginFrag);
                 fragmentTransaction.commit();
                 break;
         }
