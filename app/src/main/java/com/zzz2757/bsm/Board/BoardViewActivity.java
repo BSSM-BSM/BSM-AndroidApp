@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.webkit.WebSettingsCompat;
+import androidx.webkit.WebViewFeature;
 
 import android.content.Intent;
-import android.graphics.Color;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebSettings;
@@ -72,6 +74,12 @@ public class BoardViewActivity extends AppCompatActivity {
         webSet.setDomStorageEnabled(true);
         webSet.setSupportZoom(false);
         webSet.setDefaultTextEncodingName("utf-8");
+        int nightModeFlags = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+        if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK)) {
+            if (nightModeFlags == Configuration.UI_MODE_NIGHT_YES) {
+                WebSettingsCompat.setForceDark(webSet, WebSettingsCompat.FORCE_DARK_ON);
+            }
+        }
 
         Intent intent = getIntent();
         BoardData boardData = (BoardData) intent.getSerializableExtra("boardData");

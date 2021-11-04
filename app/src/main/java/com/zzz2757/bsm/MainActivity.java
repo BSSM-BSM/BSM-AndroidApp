@@ -37,8 +37,7 @@ public class MainActivity extends AppCompatActivity{
     private FragmentTransaction fragmentTransaction;
     private LoginFrag loginFrag;
     private SettingFrag settingFrag;
-    private WebviewFrag mealFrag;
-    private WebviewFrag timetableFrag;
+    private WebviewFrag mealFrag, timetableFrag, meisterFrag;
     private Bundle bundle;
 
     @Override
@@ -59,11 +58,14 @@ public class MainActivity extends AppCompatActivity{
                     case R.id.action_timetable:
                         setFrag(1);
                         break;
-                    case R.id.action_board:
+                    case R.id.action_meister:
                         setFrag(2);
                         break;
-                    case R.id.action_login:
+                    case R.id.action_board:
                         setFrag(3);
+                        break;
+                    case R.id.action_login:
+                        setFrag(4);
                         break;
                 }
                 return true;
@@ -73,6 +75,7 @@ public class MainActivity extends AppCompatActivity{
         settingFrag = new SettingFrag();
         mealFrag = new WebviewFrag();
         timetableFrag = new WebviewFrag();
+        meisterFrag = new WebviewFrag();
 
         setFrag(0);
         version();
@@ -95,10 +98,16 @@ public class MainActivity extends AppCompatActivity{
                 fragmentTransaction.commit();
                 break;
             case 2:
+                bundle.putString("page", "meister");
+                meisterFrag.setArguments(bundle);
+                fragmentTransaction.replace(R.id.Main_Frame, meisterFrag);
+                fragmentTransaction.commit();
+                break;
+            case 3:
                 Intent intent = new Intent(this, BoardActivity.class);
                 startActivity(intent);
                 break;
-            case 3:
+            case 4:
                 fragmentTransaction.replace(R.id.Main_Frame, loginFrag);
                 fragmentTransaction.commit();
                 break;
