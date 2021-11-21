@@ -40,14 +40,14 @@ public class LoginFrag extends Fragment implements View.OnClickListener {
 
     private void login(String member_id, String member_pw){
         ApiInterface apiInterface = ApiClient.getApiClient(context).create(ApiInterface.class);
-        Call<GetterSetter> call = apiInterface.login("login", member_id, member_pw);
+        Call<GetterSetter> call = apiInterface.login(member_id, member_pw);
         call.enqueue(new Callback<GetterSetter>() {
             @Override
             public void onResponse(Call<GetterSetter> call, Response<GetterSetter> response) {
                 if(response.isSuccessful()&&response.body()!=null){
                     getSet.setStatus(response.body().getStatus());;
                     if(getSet.getStatus()!=1){
-                        ErrorCode.errorCode(context, getSet.getStatus());
+                        ErrorCode.errorCode(context, getSet.getStatus(), getSet.getSubStatus());
                     }else{
                         Toast.makeText(context, "로그인 성공! status: "+getSet.getStatus(), Toast.LENGTH_SHORT).show();
                     }

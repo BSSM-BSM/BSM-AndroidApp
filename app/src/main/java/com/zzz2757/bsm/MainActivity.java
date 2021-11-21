@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity{
 
     private void version(){
         ApiInterface apiInterface = ApiClient.getApiClient(this).create(ApiInterface.class);
-        Call<String> call = apiInterface.version("version", "android", "app");
+        Call<String> call = apiInterface.version();
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity{
                         e.printStackTrace();
                     }
                     if(getSet.getStatus()!=1){
-                        ErrorCode.errorCode(getApplicationContext(), getSet.getStatus());
+                        ErrorCode.errorCode(getApplicationContext(), getSet.getStatus(), getSet.getSubStatus());
                     }else{
                         try {
                             JSONObject jsonObject = new JSONObject(response.body().toString());
@@ -155,7 +155,7 @@ public class MainActivity extends AppCompatActivity{
         builder.setPositiveButton("업데이트", new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int id) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://bssm.kro.kr/download?os=android&app=app"));
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://bssm.kro.kr/#download"));
                 startActivity(intent);
             }
         });

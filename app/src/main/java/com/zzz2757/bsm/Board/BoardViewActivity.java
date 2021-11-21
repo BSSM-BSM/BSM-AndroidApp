@@ -98,24 +98,24 @@ public class BoardViewActivity extends AppCompatActivity {
         comment(boardType, postNo);
     }
 
-    private void post(String boardType, int post_no){
+    private void post(String boardType, int postNo){
         ApiInterface apiInterface = ApiClient.getApiClient(this).create(ApiInterface.class);
-        Call<PostData> call = apiInterface.post("post", boardType, post_no);
+        Call<PostData> call = apiInterface.post(boardType, postNo);
         call.enqueue(new Callback<PostData>() {
             @Override
             public void onResponse(Call<PostData> call, Response<PostData> response) {
                 if(response.isSuccessful()&&response.body()!=null){
                     getSet.setStatus(response.body().getStatus());;
                     if(getSet.getStatus()!=1){
-                        ErrorCode.errorCode(getApplicationContext(), getSet.getStatus());
+                        ErrorCode.errorCode(getApplicationContext(), getSet.getStatus(), getSet.getSubStatus());
                     }else{
-                        postNo_text.setText(""+post_no);
-                        postTitle.setText(response.body().getPost_title());
-                        memberNickname.setText(response.body().getMember_nickname());
-                        postComments.setText(response.body().getPost_comments()+" 댓글");
-                        postHit.setText("조회 "+response.body().getPost_hit());
-                        postDate.setText(response.body().getPost_date());
-                        postLike.setText(response.body().getPost_like());
+                        postNo_text.setText(""+postNo);
+                        postTitle.setText(response.body().getPostTitle());
+                        memberNickname.setText(response.body().getMemberNickname());
+                        postComments.setText(response.body().getPostComments()+" 댓글");
+                        postHit.setText("조회 "+response.body().getPostHit());
+                        postDate.setText(response.body().getPostDate());
+                        postLike.setText(response.body().getPostLike());
                         if(response.body().getLike()>0){
                             post_like_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.green_btn));
                             post_dislike_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.gray));
@@ -126,7 +126,7 @@ public class BoardViewActivity extends AppCompatActivity {
                             post_like_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.gray));
                             post_dislike_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.gray));
                         }
-                        webView.loadDataWithBaseURL("https://bssm.kro.kr.", "<!DOCTYPE HTML><html lang=\"kr\"><head>" +webviewStyle+"</head><body>"+response.body().getPost_content()+"</body></html>", "text/html; charset=utf8", "UTF-8", null);
+                        webView.loadDataWithBaseURL("https://bssm.kro.kr.", "<!DOCTYPE HTML><html lang=\"kr\"><head>" +webviewStyle+"</head><body>"+response.body().getPostContent()+"</body></html>", "text/html; charset=utf8", "UTF-8", null);
                     }
                 }
             }
@@ -137,9 +137,9 @@ public class BoardViewActivity extends AppCompatActivity {
         });
     }
 
-    private void comment(String boardType, int post_no){
+    private void comment(String boardType, int postNo){
         ApiInterface apiInterface = ApiClient.getApiClient(this).create(ApiInterface.class);
-        Call<String> call = apiInterface.comment("comment", boardType, post_no);
+        Call<String> call = apiInterface.comment(boardType, postNo);
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
@@ -151,11 +151,11 @@ public class BoardViewActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     if(getSet.getStatus()!=1){
-                        ErrorCode.errorCode(getApplicationContext(), getSet.getStatus());
+                        ErrorCode.errorCode(getApplicationContext(), getSet.getStatus(), getSet.getSubStatus());
                     }else{
                         try {
                             JSONObject jsonObject = new JSONObject(response.body().toString());
-                            JSONArray arr_comment = jsonObject.getJSONArray("arr_comment");
+                            JSONArray arr_comment = jsonObject.getJSONArray("arrComment");
                             for(int i=0;i<arr_comment.length();i++){
                                 JSONObject commentObject = arr_comment.getJSONObject(i);
                                 commentList.add(new CommentData(
@@ -179,23 +179,23 @@ public class BoardViewActivity extends AppCompatActivity {
         });
     }
 
-    private void commentWrite(String boardType, int post_no, String comment, EditText edit_comment){
+    private void commentWrite(String boardType, int postNo, String comment, EditText edit_comment){
         ApiInterface apiInterface = ApiClient.getApiClient(this).create(ApiInterface.class);
-        Call<GetterSetter> call = apiInterface.commentWrtie("comment_write", boardType, post_no, comment);
+        Call<GetterSetter> call = apiInterface.commentWrtie(boardType, postNo, comment);
         call.enqueue(new Callback<GetterSetter>() {
             @Override
             public void onResponse(Call<GetterSetter> call, Response<GetterSetter> response) {
                 if(response.isSuccessful()&&response.body()!=null){
                     getSet.setStatus(response.body().getStatus());;
                     if(getSet.getStatus()!=1){
-                        ErrorCode.errorCode(getApplicationContext(), getSet.getStatus());
+                        ErrorCode.errorCode(getApplicationContext(), getSet.getStatus(), getSet.getSubStatus());
                     }else{
                         edit_comment.setText(null);
                         commentList = new ArrayList<>();
                         commentAdapter = new CommentAdapter(commentList, getApplicationContext());
                         recyclerView.removeAllViewsInLayout();
                         recyclerView.setAdapter(commentAdapter);
-                        comment(boardType, post_no);
+                        comment(boardType, postNo);
                     }
                 }
             }
@@ -211,9 +211,9 @@ public class BoardViewActivity extends AppCompatActivity {
         commentWrite(boardType, postNo, edit_comment.getText().toString(), edit_comment);
     }
 
-    private void likeSend(String boardType, int post_no, int like){
+    private void likeSend(String boardType, int postNo, int like){
         ApiInterface apiInterface = ApiClient.getApiClient(this).create(ApiInterface.class);
-        Call<String> call = apiInterface.likeSend("like", boardType, post_no, like);
+        Call<String> call = apiInterface.likeSend(boardType, postNo, like);
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
@@ -225,11 +225,11 @@ public class BoardViewActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     if(getSet.getStatus()!=1){
-                        ErrorCode.errorCode(getApplicationContext(), getSet.getStatus());
+                        ErrorCode.errorCode(getApplicationContext(), getSet.getStatus(), getSet.getSubStatus());
                     }else{
                         try {
                             JSONObject jsonObject = new JSONObject(response.body().toString());
-                            postLike.setText(jsonObject.getString("post_like"));
+                            postLike.setText(jsonObject.getString("postLike"));
                             if(Integer.parseInt(jsonObject.getString("like"))>0){
                                 post_like_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.green_btn));
                                 post_dislike_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.gray));

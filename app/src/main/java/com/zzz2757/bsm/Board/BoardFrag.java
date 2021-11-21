@@ -60,7 +60,7 @@ public class BoardFrag extends Fragment {
 
     private void board(String boardType){
         ApiInterface apiInterface = ApiClient.getApiClient(context).create(ApiInterface.class);
-        Call<String> call = apiInterface.board("board", boardType);
+        Call<String> call = apiInterface.board(boardType);
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
@@ -72,11 +72,11 @@ public class BoardFrag extends Fragment {
                         e.printStackTrace();
                     }
                     if(getSet.getStatus()!=1){
-                        ErrorCode.errorCode(context, getSet.getStatus());
+                        ErrorCode.errorCode(context, getSet.getStatus(), getSet.getSubStatus());
                     }else{
                         try {
                             JSONObject jsonObject = new JSONObject(response.body().toString());
-                            JSONArray arr_board = jsonObject.getJSONArray("arr_board");
+                            JSONArray arr_board = jsonObject.getJSONArray("arrBoard");
                             for(int i=0;i<arr_board.length();i++){
                                 JSONObject boardObject = arr_board.getJSONObject(i);
                                 boardList.add(new BoardData(
@@ -88,7 +88,7 @@ public class BoardFrag extends Fragment {
                                         boardObject.getString("memberNickname"),
                                         boardObject.getString("postDate"),
                                         Integer.parseInt(boardObject.getString("postHit")),
-                                        Integer.parseInt(boardObject.getString("post_like"))
+                                        Integer.parseInt(boardObject.getString("postLike"))
                                 ));
                             }
                         } catch (JSONException e) {

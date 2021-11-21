@@ -3,61 +3,55 @@ package com.zzz2757.bsm.Api;
 import com.zzz2757.bsm.GetterSetter.GetterSetter;
 import com.zzz2757.bsm.GetterSetter.PostData;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
+import retrofit2.http.Streaming;
+import retrofit2.http.Url;
 
 public interface ApiInterface
 {
+    @GET
+    @Streaming
+    Call<ResponseBody> downloadFile(@Url String url);
+    @GET("version/app/android")
+    Call<String> version();
     @FormUrlEncoded
-    @POST("database")
-    Call<String> version(
-            @Field("command_type") String command_type,
-            @Field("os") String os,
-            @Field("app") String app
-    );
-    @FormUrlEncoded
-    @POST("database")
+    @POST("account/login")
     Call<GetterSetter> login(
-            @Field("command_type") String command_type,
             @Field("member_id") String member_id,
             @Field("member_pw") String member_pw
     );
-    @FormUrlEncoded
-    @POST("database")
+    @GET("board/{boardType}")
     Call<String> board(
-            @Field("command_type") String command_type,
-            @Field("boardType") String boardType
+            @Path("boardType") String boardType
     );
-    @FormUrlEncoded
-    @POST("database")
+    @GET("post/{boardType}/{postNo}")
     Call<PostData> post(
-            @Field("command_type") String command_type,
-            @Field("boardType") String boardType,
-            @Field("post_no") int post_no
+            @Path("boardType") String boardType,
+            @Path("postNo") int postNo
     );
-    @FormUrlEncoded
-    @POST("database")
+    @GET("comment/{boardType}/{postNo}")
     Call<String> comment(
-            @Field("command_type") String command_type,
-            @Field("boardType") String boardType,
-            @Field("post_no") int post_no
+            @Path("boardType") String boardType,
+            @Path("postNo") int postNo
     );
     @FormUrlEncoded
-    @POST("database")
+    @POST("comment/{boardType}/{postNo}")
     Call<GetterSetter> commentWrtie(
-            @Field("command_type") String command_type,
-            @Field("boardType") String boardType,
-            @Field("post_no") int post_no,
-            @Field("post_comment") String post_comment
+            @Path("boardType") String boardType,
+            @Path("postNo") int postNo,
+            @Field("comment") String post_comment
     );
     @FormUrlEncoded
-    @POST("database")
+    @POST("like/{boardType}/{postNo}")
     Call<String> likeSend(
-            @Field("command_type") String command_type,
-            @Field("boardType") String boardType,
-            @Field("post_no") int post_no,
+            @Path("boardType") String boardType,
+            @Path("postNo") int postNo,
             @Field("like") int like
     );
 }

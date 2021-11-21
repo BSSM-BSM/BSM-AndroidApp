@@ -61,11 +61,11 @@ public class PostWriteActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         String boardType = bundle.getString("boardType");
-        int post_no = bundle.getInt("postNo");
-        if(post_no==0){
-            webView.loadUrl(Common.getBaseUrl() +"app/post_write/"+boardType);
+        int postNo = bundle.getInt("postNo");
+        if(postNo==0){
+            webView.loadUrl(Common.getBaseUrl() +"app/board/write/"+boardType);
         }else{
-            webView.loadUrl(Common.getBaseUrl() +"app/post_write/"+boardType+"?post_no="+post_no);
+            webView.loadUrl(Common.getBaseUrl() +"app/board/write/"+boardType+"/"+postNo);
         }
     }
 
